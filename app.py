@@ -6,8 +6,7 @@ import uuid
 import io
 import time
 from docx import Document
-from docx.shared import RGBColor # FIX: Import RGBColor
-# Assuming the backend is in src/backend.py and class is AdvancedRAG
+from docx.shared import RGBColor 
 from src.backend import AdvancedRAG
 
 # ==========================================
@@ -19,6 +18,47 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# Custom CSS for "No Emojis" and "Dark Black" Look
+st.markdown("""
+<style>
+    /* Force Simple Black Background */
+    .stApp {
+        background-color: #000000;
+        color: #e0e0e0;
+    }
+    
+    /* Remove default Streamlit padding/margin around titles if needed */
+    .block-container {
+        padding-top: 2rem;
+    }
+
+    /* Simple Chat Message Styling (Without Emojis/Avatars) */
+    .chat-msg {
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+    }
+    .chat-msg.user {
+        background-color: #1a1a1a;
+        border-left: 3px solid #3b82f6;
+    }
+    .chat-msg.ai {
+        background-color: #0d0d0d;
+        border-left: 3px solid #a855f7;
+    }
+    .chat-role {
+        font-weight: bold;
+        margin-bottom: 5px;
+        font-size: 0.9em;
+        color: #888;
+        text-transform: uppercase;
+    }
+    .chat-content {
+        line-height: 1.5;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 # Initialize Backend
 @st.cache_resource
 def get_rag_engine():
@@ -27,7 +67,7 @@ def get_rag_engine():
 rag_engine = get_rag_engine()
 
 # ==========================================
-# 2. SESSION STATE MANAGEMENT (PRIVACY & LOGIC)
+# 2. SESSION STATE MANAGEMENT
 # ==========================================
 if "session_id" not in st.session_state:
     st.session_state.session_id = str(uuid.uuid4())
@@ -44,28 +84,24 @@ if "db_ready" not in st.session_state:
 if "current_model" not in st.session_state:
     st.session_state.current_model = "Llama 3.3 70B (Versatile)"
 
-# Define Paths based on Session ID (Data Isolation)
+# Define Paths
 BASE_DIR = "temp_data"
 USER_SESSION_DIR = os.path.join(BASE_DIR, st.session_state.session_id)
 FILES_DIR = os.path.join(USER_SESSION_DIR, "files")
 DB_DIR = os.path.join(USER_SESSION_DIR, "db")
 
-# Ensure directories exist
 os.makedirs(FILES_DIR, exist_ok=True)
 os.makedirs(DB_DIR, exist_ok=True)
 
-# Helper: Clean up session data
 def cleanup_session_data():
     if os.path.exists(USER_SESSION_DIR):
         try:
             shutil.rmtree(USER_SESSION_DIR)
         except Exception as e:
             print(f"Error cleaning up: {e}")
-    # Re-create for new session usage
     os.makedirs(FILES_DIR, exist_ok=True)
     os.makedirs(DB_DIR, exist_ok=True)
 
-# Helper: Generate DOCX
 def generate_document(messages):
     doc = Document()
     doc.add_heading('Conversation Log', 0)
@@ -74,7 +110,7 @@ def generate_document(messages):
         p = doc.add_paragraph()
         run = p.add_run(f"{role}: ")
         run.bold = True
-        run.font.color.rgb = RGBColor(0, 0, 0) # FIX: Use RGBColor object
+        run.font.color.rgb = RGBColor(0, 0, 0)
         doc.add_paragraph(msg["content"])
         doc.add_paragraph("-" * 20)
     buffer = io.BytesIO()
@@ -82,7 +118,6 @@ def generate_document(messages):
     buffer.seek(0)
     return buffer
 
-# Model Map
 MODEL_MAP = {
     "Llama 3.3 70B (Versatile)": "llama-3.3-70b-versatile",
     "Llama 3.1 8B (Instant)": "llama-3.1-8b-instant",
@@ -95,11 +130,9 @@ MODEL_MAP = {
 # 3. SIDEBAR
 # ==========================================
 with st.sidebar:
-    st.header("Chat Settings")
+    st.header("Settings")
     
-    # NEW CHAT
     if st.button("New Chat", type="primary", use_container_width=True):
-        # Archive
         if st.session_state.messages:
             title = st.session_state.messages[0]['content'][:30] + "..."
             st.session_state.chat_history.insert(0, {
@@ -108,25 +141,17 @@ with st.sidebar:
                 "timestamp": time.strftime("%Y-%m-%d %H:%M")
             })
             
-        # Cleanup
         cleanup_session_data()
         
-        # Reset
         st.session_state.session_id = str(uuid.uuid4())
         st.session_state.messages = []
         st.session_state.db_ready = False
         st.rerun()
 
     st.divider()
-    
-    st.subheader("Chat History")
-    if not st.session_state.chat_history:
-        st.caption("No history yet.")
+    st.subheader("History")
     for chat in st.session_state.chat_history:
         st.text(f"• {chat['title']}")
-
-    st.divider()
-    st.caption(f"Session: {st.session_state.session_id[:8]}...")
 
 # ==========================================
 # 4. MAIN INTERFACE
@@ -134,36 +159,23 @@ with st.sidebar:
 st.title("Multi Model RAG")
 st.caption("Enterprise Intelligence System")
 
-# LANDING PAGE (Setup)
+# LANDING PAGE
 if not st.session_state.db_ready:
     st.subheader("1. Select Model")
-    model_friendly = st.selectbox(
-        "Choose LLM:", 
-        options=list(MODEL_MAP.keys()),
-        index=0
-    )
+    model_friendly = st.selectbox("Model", list(MODEL_MAP.keys()))
     st.session_state.current_model = MODEL_MAP[model_friendly]
 
     st.subheader("2. Upload Documents")
-    # Using key=...session_id ensures uploader resets on new chat
-    uploaded_files = st.file_uploader(
-        "Upload PDF or DOCX", 
-        accept_multiple_files=True,
-        type=['pdf', 'docx', 'txt'],
-        key=f"uploader_{st.session_state.session_id}" 
-    )
+    uploaded_files = st.file_uploader("Upload Files", accept_multiple_files=True, key=f"uploader_{st.session_state.session_id}")
 
     if uploaded_files:
         if st.button("Process Documents"):
             with st.spinner("Processing..."):
-                # Save
                 for file in uploaded_files:
                     with open(os.path.join(FILES_DIR, file.name), "wb") as f:
                         f.write(file.getbuffer())
                 
-                # Index
                 status = rag_engine.process_documents(FILES_DIR, DB_DIR)
-                
                 if status == "Success":
                     st.session_state.db_ready = True
                     st.rerun()
@@ -172,46 +184,46 @@ if not st.session_state.db_ready:
 
 # CHAT INTERFACE
 else:
-    # Top Bar: Model Info & Download
-    col1, col2 = st.columns([4, 1])
-    with col1:
-        st.info(f"Chatting with **{st.session_state.current_model}**")
-    with col2:
+    # Header
+    c1, c2 = st.columns([5, 1])
+    with c1:
+        st.info(f"Model: {st.session_state.current_model}")
+    with c2:
         if st.session_state.messages:
             docx = generate_document(st.session_state.messages)
-            st.download_button("Download Log", docx, f"chat_log.docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+            st.download_button("Download", docx, "log.docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
 
-    # Chat Messages
+    # Messages (NO EMOJIS - pure Markdown text blocks)
     for msg in st.session_state.messages:
-        with st.chat_message(msg["role"]):
-            st.write(msg["content"])
+        role_label = "USER" if msg["role"] == "user" else "AI RESPONSE"
+        css_class = "user" if msg["role"] == "user" else "ai"
+        
+        # HTML Injection for clean look without emojis
+        st.markdown(f"""
+        <div class="chat-msg {css_class}">
+            <div class="chat-role">{role_label}</div>
+            <div class="chat-content">{msg['content']}</div>
+        </div>
+        """, unsafe_allow_html=True)
 
     # Input
-    if prompt := st.chat_input("Ask a question..."):
+    if prompt := st.chat_input("Type your message..."):
         st.session_state.messages.append({"role": "user", "content": prompt})
         st.rerun()
 
-    # AI Response
+    # AI Response logic
     if st.session_state.messages and st.session_state.messages[-1]["role"] == "user":
-        with st.chat_message("assistant"):
-            with st.spinner("Thinking..."):
-                try:
-                    response = rag_engine.query(
-                        query_text=st.session_state.messages[-1]["content"],
-                        db_path=DB_DIR,
-                        model_name=st.session_state.current_model
-                    )
-                    
-                    # Handle response type
-                    final_text = response
-                    if isinstance(response, dict) and "answer" in response:
-                        final_text = response["answer"]
+        # Placeholder for AI "Thinking..."
+        with st.spinner("Generating response..."):
+            try:
+                response = rag_engine.query(
+                    query_text=st.session_state.messages[-1]["content"],
+                    db_path=DB_DIR,
+                    model_name=st.session_state.current_model
+                )
+                final_text = response["answer"] if isinstance(response, dict) else str(response)
 
-                    st.write(final_text)
-                    st.session_state.messages.append({
-                        "role": "assistant", 
-                        "content": final_text
-                    })
-                    
-                except Exception as e:
-                    st.error(f"Error: {str(e)}")
+                st.session_state.messages.append({"role": "assistant", "content": final_text})
+                st.rerun()
+            except Exception as e:
+                st.error(f"Error: {e}")
