@@ -22,16 +22,28 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-BENCHMARK_JSON = os.path.join(os.path.dirname(__file__), "..", "benchmark", "final_benchmark_results.json")
+# Path resolution that works both locally and on Streamlit Cloud
+def get_benchmark_path():
+    # Try relative to current working directory (Streamlit Cloud)
+    path1 = os.path.join("benchmark", "final_benchmark_results.json")
+    if os.path.isfile(path1):
+        return path1
+    # Try relative to this file (local development)
+    path2 = os.path.join(os.path.dirname(__file__), "..", "benchmark", "final_benchmark_results.json")
+    path2 = os.path.normpath(path2)
+    if os.path.isfile(path2):
+        return path2
+    return None
 
 def load_benchmark():
-    path = os.path.normpath(BENCHMARK_JSON)
-    if not os.path.isfile(path):
+    path = get_benchmark_path()
+    if not path:
         return None
     try:
         with open(path, "r", encoding="utf-8") as f:
             return json.load(f)
-    except Exception:
+    except Exception as e:
+        st.error(f"Error loading benchmark: {e}")
         return None
 
 data = load_benchmark()
@@ -40,7 +52,7 @@ st.markdown("<p class='bench-title'>RAG Benchmark Analysis</p>", unsafe_allow_ht
 st.markdown("<p class='bench-subtitle'>Executive Report</p>", unsafe_allow_html=True)
 
 if not data:
-    st.info("No benchmark results yet. Run the benchmark locally with: `python benchmark/run_benchmark.py path/to/report.pdf` then commit and push `benchmark/final_benchmark_results.json` to see the report here.")
+    st.info("📊 **No benchmark results yet.**\n\nTo see the benchmark report:\n1. Run the benchmark locally: `python benchmark/run_benchmark.py path/to/report.pdf`\n2. Commit the generated file: `git add benchmark/final_benchmark_results.json`\n3. Push: `git push origin main`\n4. Refresh this page after Streamlit Cloud redeploys.")
     st.stop()
 
 meta = data.get("meta", {})
