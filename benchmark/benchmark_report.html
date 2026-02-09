@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAG Benchmark Analysis | Executive Report</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0c10;
+      --bg-secondary: #111318;
+      --bg-card: #161922;
+      --border: #252836;
+      --text-primary: #e8eaed;
+      --text-secondary: #9aa0a6;
+      --text-muted: #5f6368;
+      --accent: #4a9eff;
+      --accent-dim: rgba(74, 158, 255, 0.15);
+      --success: #34a853;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      font-size: 15px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* Header */
+    header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .report-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 400;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 0.35rem;
+      font-weight: 400;
+    }
+
+    /* Jump / Nav */
+    nav {
+      margin-bottom: 2.5rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.5rem;
+    }
+
+    nav a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 2.5rem;
+    }
+
+    .section-title {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* System Stats grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+    }
+
+    .stat-value {
+      font-family: var(--serif);
+      font-size: 1.75rem;
+      font-weight: 400;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-top: 0.25rem;
+    }
+
+    /* Benchmark Summary card */
+    .summary-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem 1.75rem;
+    }
+
+    .summary-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .summary-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .summary-item label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .summary-item span {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .status-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      background: var(--accent-dim);
+      color: var(--accent);
+    }
+
+    .status-badge.success {
+      background: rgba(52, 168, 83, 0.15);
+      color: var(--success);
+    }
+
+    /* Matrix / Q&A */
+    .matrix {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .matrix-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .matrix-item-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding: 1rem 1.25rem;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .matrix-item-id {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+    }
+
+    .matrix-item-category {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .matrix-item-latency {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .matrix-item-similarity {
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .matrix-question {
+      padding: 1rem 1.25rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .matrix-answer {
+      padding: 1.25rem 1.25rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .matrix-sources {
+      padding: 0 1.25rem 1rem;
+      margin-top: -0.5rem;
+    }
+
+    .matrix-sources-title {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .source-item {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      padding: 0.5rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .source-item:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .source-score {
+      font-variant-numeric: tabular-nums;
+      color: var(--accent);
+      margin-right: 0.5rem;
+    }
+
+    /* Executive */
+    .executive-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      padding: 1.5rem 1.75rem;
+    }
+
+    .executive-box .section-title {
+      margin-bottom: 0.75rem;
+    }
+
+    .executive-box p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.75;
+    }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 3rem 2rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .empty-state .section-title {
+      border-bottom: none;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Loading */
+    .loading {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* Source file line */
+    .source-line {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 1rem;
+    }
+
+    .source-line strong {
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <p class="report-label">Benchmark Analysis</p>
+      <h1>RAG Performance Matrix</h1>
+      <p class="subtitle">Executive Report</p>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="#system-stats">System Stats</a></li>
+        <li><a href="#benchmark-summary">Benchmark Summary</a></li>
+        <li><a href="#matrix">Question Matrix</a></li>
+        <li><a href="#executive">Executive LLM Analysis</a></li>
+      </ul>
+    </nav>
+
+    <section id="system-stats">
+      <h2 class="section-title">System Stats</h2>
+      <div class="stats-grid" id="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value" id="stat-runs">--</div>
+          <div class="stat-label">Runs</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="stat-docs">--</div>
+          <div class="stat-label">Docs</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="stat-questions">--</div>
+          <div class="stat-label">Questions</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="stat-latency">--</div>
+          <div class="stat-label">Total Latency (ms)</div>
+        </div>
+        <div class="stat-card" id="stat-card-similarity">
+          <div class="stat-value" id="stat-similarity">--</div>
+          <div class="stat-label">Avg Similarity</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="benchmark-summary">
+      <h2 class="section-title">Benchmark Summary</h2>
+      <div class="summary-card">
+        <div class="summary-row">
+          <div class="summary-item">
+            <label>Source File</label>
+            <span id="summary-source">--</span>
+          </div>
+          <div class="summary-item">
+            <label>Model</label>
+            <span id="summary-model">--</span>
+          </div>
+          <div class="summary-item">
+            <label>Status</label>
+            <span id="summary-status"><span class="status-badge">Pending</span></span>
+          </div>
+        </div>
+        <div class="summary-row">
+          <div class="summary-item">
+            <label>Questions Evaluated</label>
+            <span id="summary-questions">--</span>
+          </div>
+        </div>
+      </div>
+      <p class="source-line">Source File: <strong id="source-file-ref">final_benchmark_results.json</strong></p>
+    </section>
+
+    <section id="matrix">
+      <h2 class="section-title">RAG Performance Report</h2>
+      <div class="matrix" id="matrix-container">
+        <p class="loading" id="matrix-loading">Parsing Matrix Data...</p>
+      </div>
+    </section>
+
+    <section id="executive">
+      <h2 class="section-title">Executive LLM Analysis</h2>
+      <div class="executive-box">
+        <p id="executive-text">Parsing Matrix Data...</p>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    (function () {
+      const JSON_PATH = 'final_benchmark_results.json';
+
+      function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      }
+
+      function render(data) {
+        const stats = data.system_stats || {};
+        document.getElementById('stat-runs').textContent = stats.runs ?? '--';
+        document.getElementById('stat-docs').textContent = stats.docs ?? '--';
+        document.getElementById('stat-questions').textContent = stats.total_questions ?? '--';
+        document.getElementById('stat-latency').textContent = stats.total_latency_ms != null ? Number(stats.total_latency_ms).toLocaleString() : '--';
+        var simEl = document.getElementById('stat-similarity');
+        if (stats.avg_similarity_score != null) {
+          simEl.textContent = Number(stats.avg_similarity_score).toFixed(4);
+        } else {
+          simEl.textContent = '--';
+        }
+
+        const summary = data.benchmark_summary || {};
+        document.getElementById('summary-source').textContent = summary.source_document || data.meta?.source_file || '--';
+        document.getElementById('summary-model').textContent = summary.model_used || data.meta?.model || '--';
+        document.getElementById('summary-questions').textContent = summary.questions_evaluated ?? '--';
+        const statusEl = document.getElementById('summary-status');
+        const status = summary.status || 'Pending';
+        statusEl.innerHTML = '<span class="status-badge ' + (status === 'Success' ? 'success' : '') + '">' + escapeHtml(status) + '</span>';
+
+        document.getElementById('source-file-ref').textContent = data.meta?.source_file || JSON_PATH;
+
+        const runs = data.runs || [];
+        const matrixContainer = document.getElementById('matrix-container');
+        if (runs.length === 0) {
+          matrixContainer.innerHTML = '<div class="empty-state"><p class="section-title">No runs recorded</p><p>Execute the benchmark script to populate results.</p></div>';
+        } else {
+          matrixContainer.innerHTML = runs.map(function (r) {
+            var headerExtras = '';
+            if (r.latency_ms != null) headerExtras += '<span class="matrix-item-latency">' + r.latency_ms + ' ms</span>';
+            if (r.similarity_score != null) headerExtras += '<span class="matrix-item-similarity">Similarity: ' + Number(r.similarity_score).toFixed(4) + '</span>';
+            var sourcesHtml = '';
+            if (r.sources && r.sources.length > 0) {
+              sourcesHtml = '<div class="matrix-sources"><div class="matrix-sources-title">Sources</div>' +
+                r.sources.map(function (s, i) {
+                  var scoreStr = s.score != null ? '<span class="source-score">' + Number(s.score).toFixed(4) + '</span>' : '';
+                  return '<div class="source-item">' + scoreStr + escapeHtml(s.snippet || '') + '</div>';
+                }).join('') + '</div>';
+            }
+            return (
+              '<div class="matrix-item">' +
+                '<div class="matrix-item-header">' +
+                  '<span class="matrix-item-id">' + escapeHtml(r.id) + '</span>' +
+                  '<span class="matrix-item-category">' + escapeHtml(r.category) + '</span>' +
+                  headerExtras +
+                '</div>' +
+                '<div class="matrix-question">' + escapeHtml(r.question) + '</div>' +
+                '<div class="matrix-answer">' + escapeHtml(r.answer || 'No response.') + '</div>' +
+                sourcesHtml +
+              '</div>'
+            );
+          }).join('');
+        }
+
+        const execText = data.executive_summary || 'No executive summary available.';
+        document.getElementById('executive-text').textContent = execText;
+      }
+
+      function loadFromScriptTag() {
+        const el = document.getElementById('benchmark-data');
+        if (el && el.type === 'application/json') {
+          try {
+            render(JSON.parse(el.textContent));
+            return true;
+          } catch (e) {
+            console.warn('Inline benchmark data parse error', e);
+          }
+        }
+        return false;
+      }
+
+      function loadFromFetch() {
+        fetch(JSON_PATH)
+          .then(function (res) {
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            return res.json();
+          })
+          .then(render)
+          .catch(function (err) {
+            if (!loadFromScriptTag()) {
+              document.getElementById('matrix-loading').textContent = 'Unable to load benchmark data. Serve this folder over HTTP or embed final_benchmark_results.json.';
+              document.getElementById('executive-text').textContent = 'Load final_benchmark_results.json to view the executive summary.';
+            }
+          });
+      }
+
+      if (!loadFromScriptTag()) {
+        loadFromFetch();
+      }
+    })();
+  </script>
+</body>
+</html>

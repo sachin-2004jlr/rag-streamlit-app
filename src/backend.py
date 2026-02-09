@@ -129,3 +129,75 @@ class AdvancedRAG:
 
         except Exception as e:
             return f"Error during query: {str(e)}"
+
+    def query_with_sources(self, query_text, db_path, model_name, top_k_sources=3):
+        """Run query and return response plus source chunks with similarity scores for benchmark reporting."""
+        try:
+            system_prompt = (
+                "You are an expert assistant. Use the provided context to answer the user's question.\n"
+                "RESPONSE RULES:\n"
+                "1. If the query is simple, provide a concise 2-line response.\n"
+                "2. If the query asks for details or complex analysis, provide a comprehensive answer.\n"
+                "3. If you don't know the answer based on context, say you don't know. Don't hallucinate."
+            )
+            llm = Groq(
+                model=model_name,
+                api_key=os.getenv("GROQ_API_KEY"),
+                temperature=0.1,
+                system_prompt=system_prompt
+            )
+            Settings.llm = llm
+
+            chroma_client = chromadb.PersistentClient(path=db_path)
+            chroma_collection = chroma_client.get_or_create_collection("user_data")
+            vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
+            index = VectorStoreIndex.from_vector_store(
+                vector_store,
+                embed_model=self.embed_model
+            )
+            qa_prompt_tmpl_str = (
+                "Context information is below.\n"
+                "---------------------\n"
+                "{context_str}\n"
+                "---------------------\n"
+                "Given the context information and not prior knowledge, "
+                "answer the query.\n"
+                "Query: {query_str}\n"
+                "Answer: "
+            )
+            qa_prompt_tmpl = PromptTemplate(qa_prompt_tmpl_str)
+            retriever = VectorIndexRetriever(index=index, similarity_top_k=5)
+            query_engine = RetrieverQueryEngine.from_args(
+                retriever=retriever,
+                text_qa_template=qa_prompt_tmpl
+            )
+            response = query_engine.query(query_text)
+            answer = str(response)
+            sources = []
+            top_score = None
+            if hasattr(response, "source_nodes") and response.source_nodes:
+                for i, node_with_score in enumerate(response.source_nodes[:top_k_sources]):
+                    score = getattr(node_with_score, "score", None)
+                    if score is not None and top_score is None:
+                        top_score = float(score)
+                    text = getattr(node_with_score.node, "text", "") if hasattr(node_with_score, "node") else ""
+                    if not text and hasattr(node_with_score, "get_content"):
+                        text = node_with_score.get_content()
+                    text_snippet = (text[:400] + "...") if len(text) > 400 else text
+                    sources.append({
+                        "snippet": text_snippet,
+                        "score": float(score) if score is not None else None
+                    })
+                if top_score is None and sources and sources[0].get("score") is not None:
+                    top_score = sources[0]["score"]
+            return {
+                "answer": answer,
+                "top_similarity_score": top_score,
+                "sources": sources
+            }
+        except Exception as e:
+            return {
+                "answer": f"Error during query: {str(e)}",
+                "top_similarity_score": None,
+                "sources": []
+            }

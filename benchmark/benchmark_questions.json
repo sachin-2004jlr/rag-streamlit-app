@@ -1,0 +1,46 @@
+{
+  "source_document": "AKSHITHA_YC_Major_Project_report.pdf",
+  "description": "Benchmark evaluation for RAG system using Helmet and License Plate Detection using Deep Learning (Major Project Report).",
+  "questions": [
+    {
+      "id": "Q1",
+      "category": "Objective and Problem Statement",
+      "question": "What is the main objective and problem statement of the Helmet and License Plate Detection project described in the report?"
+    },
+    {
+      "id": "Q2",
+      "category": "Algorithms and Methodology",
+      "question": "Which algorithms and deep learning models are used for helmet detection and license plate recognition in the system, and what is the rationale for their selection?"
+    },
+    {
+      "id": "Q3",
+      "category": "Performance Metrics",
+      "question": "What are the reported performance metrics for helmet detection and license plate recognition, including accuracy, precision, recall, and mAP values?"
+    },
+    {
+      "id": "Q4",
+      "category": "Limitations",
+      "question": "What are the main limitations of the system described in the report, particularly regarding low-light conditions, OCR accuracy, and generalization?"
+    },
+    {
+      "id": "Q5",
+      "category": "Future Enhancements",
+      "question": "What future enhancements does the report propose for both helmet detection and license plate recognition to improve robustness and deployment?"
+    },
+    {
+      "id": "Q6",
+      "category": "Dataset and Training",
+      "question": "What dataset sizes and training configuration are used for helmet detection and for license plate detection (epochs, batch size, image size)?"
+    },
+    {
+      "id": "Q7",
+      "category": "System Architecture",
+      "question": "Describe the high-level system architecture and data flow from image input to helmet and license plate detection and OCR."
+    },
+    {
+      "id": "Q8",
+      "category": "Testing and Validation",
+      "question": "What testing methodology and environments are described in the report (unit testing, integration testing, system testing, and KPIs)?"
+    }
+  ]
+}

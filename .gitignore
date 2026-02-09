@@ -2,3 +2,6 @@
 .env
 __pycache__/
 temp_data/
+benchmark/temp_benchmark_files/
+benchmark/temp_benchmark_db/
+*.pyc
