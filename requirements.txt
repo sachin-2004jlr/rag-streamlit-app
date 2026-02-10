@@ -11,3 +11,5 @@ pymupdf
 docx2txt
 pysqlite3-binary
 python-docx
+pandas
+plotly
