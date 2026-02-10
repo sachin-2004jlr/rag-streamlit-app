@@ -1,0 +1,252 @@
+[
+    {
+        "model": "Llama 3.3 70B (Versatile)",
+        "question": "What is the main benefit of employing machine learning?",
+        "ground_truth": "The fundamental benefit of employing machine learning is that once an algorithm learns what to do with data, it can complete tasks on its own.",
+        "prediction": "The main benefit of employing machine learning is that it enables computers to figure out how to do things without being specifically programmed to do so, allowing them to learn from data and make predictions or judgments on their own. This can be particularly useful for complex tasks where manually creating algorithms can be difficult or impossible for humans.",
+        "latency": 2.1615915298461914,
+        "relevance_score": 10,
+        "accuracy_score": 9,
+        "explanation": "The prediction is highly relevant as it directly addresses the question. However, it scores 9 out of 10 in accuracy because while it conveys the same idea as the ground truth, it uses slightly different wording. The ground truth states that the algorithm can 'complete tasks on its own', whereas the prediction states that the computer can 'learn from data and make predictions or judgments on their own'. Although the meaning is the same, the phrasing is not identical."
+    },
+    {
+        "model": "Llama 3.3 70B (Versatile)",
+        "question": "Who coined the phrase 'Machine Learning'?",
+        "ground_truth": "Arthur Samuel, a pioneer in the fields of artificial intelligence and computer games.",
+        "prediction": "Arthur Samuel",
+        "latency": 1.3311257362365723,
+        "relevance_score": 10,
+        "accuracy_score": 10,
+        "explanation": "The prediction directly addresses the question and matches the ground truth information, indicating a perfect score in both relevance and accuracy."
+    },
+    {
+        "model": "Llama 3.3 70B (Versatile)",
+        "question": "What is machine learning?",
+        "ground_truth": "Machine learning is the process of automating and refining the learning process of computers based on their experiences without the need for programming.",
+        "prediction": "Machine learning is the process of computers figuring out how to do things without being specifically programmed to do so. It entails computers learning from data in order to do specific jobs. Machine learning algorithms are utilized in a wide range of applications, including medicine, email filtering, and computer vision, where developing traditional algorithms to do the required tasks is difficult or impossible. It is a discipline that uses a variety of ways to train computers how to complete tasks for which no entirely suitable solution exists.",
+        "latency": 0.7914018630981445,
+        "relevance_score": 9,
+        "accuracy_score": 8,
+        "explanation": "The prediction is highly relevant to the question as it directly addresses the concept of machine learning. However, there are some minor inaccuracies in the explanation. The prediction mentions that machine learning entails computers learning from data to do specific jobs, which is correct. It also mentions that machine learning algorithms are used in various applications, which is also correct. However, the prediction does not explicitly mention that machine learning is based on the computer's experiences without the need for programming, which is a key aspect of the ground truth. Additionally, the prediction uses some slightly different wording, such as 'figuring out how to do things' instead of 'automating and refining the learning process'. Overall, the prediction is a good attempt at explaining machine learning, but it could be improved with more precise language and a clearer connection to the ground truth."
+    },
+    {
+        "model": "Llama 3.3 70B (Versatile)",
+        "question": "What are the types of learning in machine learning?",
+        "ground_truth": "Supervised Learning, Unsupervised Learning, Semi-supervised Learning, and Reinforcement Learning.",
+        "prediction": "The types of learning in machine learning are: \n\n1. Supervised Learning: This type of learning involves training a model on labeled data to make predictions on new, unseen data. Examples of supervised learning algorithms include classification and regression.\n\n2. Unsupervised Learning: This type of learning involves training a model on unlabeled data to discover patterns or structure in the data. Examples of unsupervised learning algorithms include cluster analysis and density estimation.\n\n3. Semi-supervised Learning: This type of learning involves training a model on a combination of labeled and unlabeled data to improve the accuracy of the model.\n\n4. Reinforcement Learning: This type of learning involves training an agent to take actions in an environment to maximize a reward signal. The agent learns through trial and error to achieve its goal.",
+        "latency": 1.9621169567108154,
+        "relevance_score": 10,
+        "accuracy_score": 9,
+        "explanation": "The prediction directly addresses the question and provides a clear explanation of each type of learning in machine learning. However, it does not explicitly mention the ground truth information of Semi-supervised Learning, but the explanation is accurate. Therefore, the accuracy score is 9 out of 10."
+    },
+    {
+        "model": "Llama 3.3 70B (Versatile)",
+        "question": "What is supervised learning?",
+        "ground_truth": "Supervised learning algorithms create a mathematical model of a set of data that includes both the inputs and the outputs that are sought.",
+        "prediction": "Supervised learning is a type of learning where algorithms create a mathematical model of a set of data that includes both the inputs and the outputs that are sought. The information is referred to as training data, and it consists of a collection of training instances, each with one or more inputs and a supervisory signal as the desired output. Supervised learning techniques develop a function that may be used to predict the output associated with fresh inputs by iteratively optimizing an objective function. Examples of supervised learning algorithms include classification and regression.",
+        "latency": 0.6356668472290039,
+        "relevance_score": 10,
+        "accuracy_score": 9,
+        "explanation": "The prediction directly addresses the question of supervised learning and provides a clear explanation of the concept. However, it includes some additional information that is not present in the ground truth, such as the term 'supervisory signal' and the specific examples of classification and regression. These minor deviations from the ground truth result in a slightly lower accuracy score."
+    },
+    {
+        "model": "Llama 3.3 70B (Versatile)",
+        "question": "What is unsupervised learning?",
+        "ground_truth": "Unsupervised learning methods take a collection of data with only inputs and detect structure in it, such as data point grouping or clustering.",
+        "prediction": "Unsupervised learning methods take a collection of data with only inputs and detect structure in it, such as data point grouping or clustering. The algorithms learn from unlabeled, unclassified, and uncategorized test data, discovering commonalities in the data and reacting depending on the existence or lack of such commonalities in each new piece of data.",
+        "latency": 2.028452157974243,
+        "relevance_score": 10,
+        "accuracy_score": 9,
+        "explanation": "The prediction is highly relevant as it directly addresses the question. However, it scores 9 out of 10 in accuracy because it provides additional information about the algorithms learning from the data, which is not present in the ground truth. The core concept of unsupervised learning is accurately captured, but the extra details slightly deviate from the ground truth."
+    },
+    {
+        "model": "Llama 3.3 70B (Versatile)",
+        "question": "What is reinforcement learning?",
+        "ground_truth": "Reinforcement learning is a branch of machine learning that studies how software agents should behave in a given environment in order to maximize some metric of cumulative reward.",
+        "prediction": "Reinforcement learning is a branch of machine learning that studies how software agents should behave in a given environment in order to maximize some metric of cumulative reward. It is a field that draws from various disciplines, including game theory, control theory, operations research, information theory, simulation-based optimization, multi-agent systems, swarm intelligence, statistics, and genetic algorithms. In machine learning, the environment is generally represented as a Markov decision process, and dynamic programming techniques are used in many reinforcement learning systems. Reinforcement learning procedures are applied when exact mathematical models of the environment are infeasible.",
+        "latency": 1.43412184715271,
+        "relevance_score": 10,
+        "accuracy_score": 9,
+        "explanation": "The prediction is highly relevant as it directly addresses the question. However, it scores 9 out of 10 in terms of accuracy because it provides additional information that is not present in the ground truth, but the core concept remains the same. The prediction does not introduce any incorrect information, making it a reliable answer."
+    },
+    {
+        "model": "Llama 3.3 70B (Versatile)",
+        "question": "What is dimensionality reduction?",
+        "ground_truth": "The technique of lowering the number of random variables under consideration by generating a set of primary variables.",
+        "prediction": "Dimensionality reduction is a technique of lowering the number of random variables under consideration by generating a set of primary variables. In other words, it's a method of minimising the size of the feature set, also known as the number of features. The majority of dimensionality reduction approaches fall into one of two categories: feature deletion or extraction. Principal component analysis is one of the most widely used methods for dimensionality reduction.",
+        "latency": 1.5148813724517822,
+        "relevance_score": 10,
+        "accuracy_score": 9,
+        "explanation": "The prediction is highly relevant as it directly addresses the question. However, it scores 9 out of 10 in terms of accuracy because it provides a more detailed explanation than the ground truth, but the core information is accurate. The prediction also provides additional context and examples, which is not present in the ground truth."
+    },
+    {
+        "model": "Llama 3.3 70B (Versatile)",
+        "question": "What is the purpose of machine learning?",
+        "ground_truth": "The purpose of machine learning is to enable computers to learn from data and make predictions or decisions without being explicitly programmed.",
+        "prediction": "The purpose of machine learning is to enable computers to figure out how to do things without being specifically programmed to do so, by learning from data and making predictions or judgments. It is used to solve complex tasks where traditional algorithms are difficult or impossible to develop, and is applied in various fields such as medicine, email filtering, and computer vision.",
+        "latency": 1.4471094608306885,
+        "relevance_score": 9,
+        "accuracy_score": 8,
+        "explanation": "The prediction is highly relevant to the question, directly addressing the purpose of machine learning. However, it scores 8 out of 10 in terms of accuracy because it uses the phrase 'figure out how to do things' which is slightly different from the ground truth's 'make predictions or decisions'. The prediction also provides additional context and examples, which is a positive aspect."
+    },
+    {
+        "model": "Llama 3.3 70B (Versatile)",
+        "question": "How does machine learning differ from traditional programming?",
+        "ground_truth": "Machine learning differs from traditional programming in that it enables computers to learn from data and make predictions or decisions without being explicitly programmed.",
+        "prediction": "Machine learning differs from traditional programming in that it enables computers to figure out how to do things without being specifically programmed to do so. In traditional programming, algorithms are manually created to perform specific tasks, whereas in machine learning, computers learn from data to make predictions or judgments without being explicitly programmed. This allows machine learning to be more productive for complex tasks where manually creating algorithms can be difficult for humans.",
+        "latency": 3.0808112621307373,
+        "relevance_score": 9,
+        "accuracy_score": 8,
+        "explanation": "The prediction is highly relevant to the question as it directly addresses the key difference between machine learning and traditional programming. However, it scores 8 out of 10 in terms of accuracy because while it correctly identifies the main difference, it uses the phrase 'figure out how to do things' which is slightly less precise than the ground truth's 'learn from data and make predictions or decisions'. The prediction also provides additional context about the productivity of machine learning for complex tasks, which is not present in the ground truth."
+    },
+    {
+        "model": "Llama 3.3 70B (Versatile)",
+        "question": "What are some applications of machine learning?",
+        "ground_truth": "Machine learning has a wide range of applications, including data mining, image processing, predictive analytics, medicine, email filtering, and computer vision.",
+        "prediction": "Machine learning algorithms are utilized in a wide range of applications, including medicine, email filtering, and computer vision, where developing traditional algorithms to do the required tasks is difficult or impossible. Additionally, machine learning is also known as predictive analytics when it is used to solve business challenges.",
+        "latency": 7.178985118865967,
+        "relevance_score": 8,
+        "accuracy_score": 6,
+        "explanation": "The prediction is relevant to the question as it directly addresses the applications of machine learning. However, the accuracy score is lower because the prediction does not fully match the ground truth information. The prediction mentions medicine, email filtering, and computer vision, which are correct, but it misses other important applications like data mining and image processing. Additionally, the prediction incorrectly states that machine learning is also known as predictive analytics, when in fact predictive analytics is a type of application of machine learning."
+    },
+    {
+        "model": "Llama 3.3 70B (Versatile)",
+        "question": "What is the relationship between machine learning and artificial intelligence?",
+        "ground_truth": "Machine learning is a component of artificial intelligence.",
+        "prediction": "Machine learning is considered to be a component of artificial intelligence.",
+        "latency": 7.07848596572876,
+        "relevance_score": 10,
+        "accuracy_score": 10,
+        "explanation": "The prediction directly addresses the question and accurately matches the ground truth information, indicating a strong understanding of the relationship between machine learning and artificial intelligence."
+    },
+    {
+        "model": "Llama 3.3 70B (Versatile)",
+        "question": "How does machine learning improve over time?",
+        "ground_truth": "Machine learning improves over time as it learns from experience and data, allowing it to make better predictions and decisions.",
+        "prediction": "Machine learning improves over time as a result of experience and data. The algorithms used in machine learning create a model based on sample data, and as more data becomes available, the model can be refined and improved. This process allows the machine learning algorithms to learn and improve themselves without the need for explicit programming. The learning process is automated and refined based on the data and experiences, enabling the machines to complete tasks more efficiently over time.",
+        "latency": 6.503688335418701,
+        "relevance_score": 9,
+        "accuracy_score": 8,
+        "explanation": "The prediction is highly relevant to the question as it directly addresses the improvement of machine learning over time. However, there is a slight inaccuracy in the explanation as it mentions that the machine learning algorithms 'learn and improve themselves without the need for explicit programming'. While this is partially true, it's not entirely accurate as machine learning algorithms do require some level of programming and configuration to function. Nevertheless, the prediction provides a clear and concise explanation of how machine learning improves over time, making it a strong answer."
+    },
+    {
+        "model": "Llama 3.1 8B (Instant)",
+        "question": "What is the main benefit of employing machine learning?",
+        "ground_truth": "The fundamental benefit of employing machine learning is that once an algorithm learns what to do with data, it can complete tasks on its own.",
+        "prediction": "Machine learning allows computers to figure out how to do things without being specifically programmed to do so, enabling them to learn from data and perform specific jobs. This approach can be more productive than manually creating algorithms for complicated tasks, as it enables computers to develop their own algorithms and improve their performance over time.",
+        "latency": 1.1581807136535645,
+        "relevance_score": 9,
+        "accuracy_score": 8,
+        "explanation": "The prediction is highly relevant to the question as it directly addresses the main benefit of employing machine learning. However, it scores 8 out of 10 in terms of accuracy because while it correctly states that machine learning enables computers to learn from data and perform specific jobs, it does not explicitly mention that the algorithm can complete tasks on its own once it has learned what to do with the data. This is a key point mentioned in the ground truth, but it is not entirely absent from the prediction."
+    },
+    {
+        "model": "Llama 3.1 8B (Instant)",
+        "question": "Who coined the phrase 'Machine Learning'?",
+        "ground_truth": "Arthur Samuel, a pioneer in the fields of artificial intelligence and computer games.",
+        "prediction": "Arthur Samuel.",
+        "latency": 0.6311178207397461,
+        "relevance_score": 10,
+        "accuracy_score": 10,
+        "explanation": "The prediction directly addresses the question and matches the ground truth information, indicating a perfect score in both relevance and accuracy."
+    },
+    {
+        "model": "Llama 3.1 8B (Instant)",
+        "question": "What is machine learning?",
+        "ground_truth": "Machine learning is the process of automating and refining the learning process of computers based on their experiences without the need for programming.",
+        "prediction": "Machine learning is the process of computers figuring out how to do things without being specifically programmed to do so. It entails computers learning from data in order to do specific jobs.",
+        "latency": 0.628563404083252,
+        "relevance_score": 9,
+        "accuracy_score": 8,
+        "explanation": "The prediction is highly relevant to the question as it directly addresses the concept of machine learning. However, it scores 8 out of 10 in terms of accuracy because while it correctly states that machine learning involves computers learning from data, it does not explicitly mention the automation and refinement of the learning process, which is a key aspect of the ground truth."
+    },
+    {
+        "model": "Llama 3.1 8B (Instant)",
+        "question": "What are the types of learning in machine learning?",
+        "ground_truth": "Supervised Learning, Unsupervised Learning, Semi-supervised Learning, and Reinforcement Learning.",
+        "prediction": "There are four primary types of learning in machine learning. \n\n1. Supervised learning, where algorithms create a mathematical model of a set of data that includes both the inputs and the outputs that are sought.\n2. Unsupervised learning, where algorithms take a collection of data with only inputs and detect structure in it, such as data point grouping or clustering.\n3. Semi-supervised learning, which combines unsupervised learning (without any labelled training data) and supervised learning (with labelled training data).\n4. Reinforcement learning, which studies how software agents should behave in a given environment in order to maximize some metric of cumulative reward.",
+        "latency": 10.355892896652222,
+        "relevance_score": 10,
+        "accuracy_score": 9,
+        "explanation": "The prediction is highly relevant as it directly addresses the question. However, it scores 9 out of 10 in accuracy because it does not explicitly mention Semi-supervised Learning, but it does describe it as a combination of unsupervised and supervised learning, which is accurate."
+    },
+    {
+        "model": "Llama 3.1 8B (Instant)",
+        "question": "What is supervised learning?",
+        "ground_truth": "Supervised learning algorithms create a mathematical model of a set of data that includes both the inputs and the outputs that are sought.",
+        "prediction": "Supervised learning algorithms create a mathematical model of a set of data that includes both the inputs and the outputs that are sought. The information is referred to as training data, and it consists of a collection of training instances. Each training example has one or more inputs and a supervisory signal as the desired output.",
+        "latency": 16.83487367630005,
+        "relevance_score": 10,
+        "accuracy_score": 9,
+        "explanation": "The prediction is highly relevant as it directly addresses the question of supervised learning. However, it scores 9 out of 10 in accuracy because it provides a slightly more detailed explanation than the ground truth, but the core information is identical."
+    },
+    {
+        "model": "Llama 3.1 8B (Instant)",
+        "question": "What is unsupervised learning?",
+        "ground_truth": "Unsupervised learning methods take a collection of data with only inputs and detect structure in it, such as data point grouping or clustering.",
+        "prediction": "Unsupervised learning methods take a collection of data with only inputs and detect structure in it, such as data point grouping or clustering. As a result, the algorithms learn from unlabeled, unclassified, and uncategorized test data.",
+        "latency": 15.037274360656738,
+        "relevance_score": 10,
+        "accuracy_score": 9,
+        "explanation": "The prediction is highly relevant as it directly addresses the question. However, it scores 9 out of 10 in accuracy because it includes additional information ('unlabeled, unclassified, and uncategorized test data') that is not present in the ground truth. This extra detail is not incorrect, but it slightly deviates from the precise ground truth."
+    },
+    {
+        "model": "Llama 3.1 8B (Instant)",
+        "question": "What is reinforcement learning?",
+        "ground_truth": "Reinforcement learning is a branch of machine learning that studies how software agents should behave in a given environment in order to maximize some metric of cumulative reward.",
+        "prediction": "Reinforcement learning is a branch of machine learning that studies how software agents should behave in a given environment in order to maximize some metric of cumulative reward.",
+        "latency": 14.891809940338135,
+        "relevance_score": 0,
+        "accuracy_score": 0,
+        "explanation": "Evaluation failed: Extra data: line 7 column 1 (char 203)"
+    },
+    {
+        "model": "Llama 3.1 8B (Instant)",
+        "question": "What is dimensionality reduction?",
+        "ground_truth": "The technique of lowering the number of random variables under consideration by generating a set of primary variables.",
+        "prediction": "The technique of lowering the number of random variables under consideration by generating a set of primary variables is known as dimensionality reduction. In other words, it's a method of minimising the size of your feature set, also known as the number of features.",
+        "latency": 14.74970030784607,
+        "relevance_score": 10,
+        "accuracy_score": 9,
+        "explanation": "The prediction is highly relevant as it directly addresses the question. However, it scores 9 out of 10 in accuracy because it uses the phrase 'in other words' which is not present in the ground truth. The prediction also uses the term 'minimising the size of your feature set' which is a common way to describe dimensionality reduction, but it's not explicitly mentioned in the ground truth."
+    },
+    {
+        "model": "Llama 3.1 8B (Instant)",
+        "question": "What is the purpose of machine learning?",
+        "ground_truth": "The purpose of machine learning is to enable computers to learn from data and make predictions or decisions without being explicitly programmed.",
+        "prediction": "The purpose of machine learning is to enable computers to figure out how to do things without being specifically programmed to do so, by allowing them to learn from data and make predictions or judgments without being explicitly programmed.",
+        "latency": 13.681012868881226,
+        "relevance_score": 9,
+        "accuracy_score": 8,
+        "explanation": "The prediction is highly relevant to the question as it directly addresses the purpose of machine learning. However, it scores 8 out of 10 in terms of accuracy because it uses the phrase 'figure out how to do things' which is a bit more vague than the ground truth's 'make predictions or decisions'. The prediction also uses the word 'judgments' which is not present in the ground truth, but it still conveys the same idea."
+    },
+    {
+        "model": "Llama 3.1 8B (Instant)",
+        "question": "How does machine learning differ from traditional programming?",
+        "ground_truth": "Machine learning differs from traditional programming in that it enables computers to learn from data and make predictions or decisions without being explicitly programmed.",
+        "prediction": "Machine learning allows computers to make predictions or judgments without being explicitly programmed, whereas traditional programming requires manual coding to achieve specific tasks. This means that machine learning enables computers to learn from data and adapt to new situations, whereas traditional programming relies on pre-defined instructions.",
+        "latency": 0.965808629989624,
+        "relevance_score": 9,
+        "accuracy_score": 8,
+        "explanation": "The prediction is highly relevant to the question as it directly addresses the key differences between machine learning and traditional programming. However, it scores 8 out of 10 in terms of accuracy because it slightly rephrases the ground truth information, but still conveys the same meaning. The prediction could be more accurate if it used the exact same wording as the ground truth."
+    },
+    {
+        "model": "Llama 3.1 8B (Instant)",
+        "question": "What are some applications of machine learning?",
+        "ground_truth": "Machine learning has a wide range of applications, including data mining, image processing, predictive analytics, medicine, email filtering, and computer vision.",
+        "prediction": "Machine learning algorithms are utilized in a wide range of applications, including medicine, email filtering, and computer vision, where developing traditional algorithms to do the required tasks is difficult or impossible.",
+        "latency": 0.6308920383453369,
+        "relevance_score": 8,
+        "accuracy_score": 4,
+        "explanation": "The prediction is relevant to the question as it mentions some applications of machine learning. However, it lacks detail and does not cover the full scope of applications mentioned in the ground truth. The accuracy score is low because the prediction does not match the ground truth information, specifically missing data mining and predictive analytics, and providing a vague statement about difficulty in developing traditional algorithms."
+    },
+    {
+        "model": "Llama 3.1 8B (Instant)",
+        "question": "What is the relationship between machine learning and artificial intelligence?",
+        "ground_truth": "Machine learning is a component of artificial intelligence.",
+        "prediction": "Machine learning is considered to be a component of artificial intelligence.",
+        "latency": 4.826146602630615,
+        "relevance_score": 10,
+        "accuracy_score": 10,
+        "explanation": "The prediction directly addresses the question and accurately matches the ground truth information, indicating a strong understanding of the relationship between machine learning and artificial intelligence."
+    }
+]
