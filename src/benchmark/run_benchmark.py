@@ -23,7 +23,8 @@ MODELS = {
 DB_PATH = os.path.join("temp_data", "benchmark_db") 
 PDF_PATH = os.path.join("benchmark_data", "Dr.R.Praba-StudyonMLAlgorithms.pdf")
 DATASET_PATH = os.path.join("benchmark_data", "test_set.json")
-RESULTS_PATH = os.path.join("benchmark_data", "results.json")
+# Save results to docs/ folder for GitHub Pages report
+RESULTS_PATH = os.path.join("docs", "results.json")
 
 def setup_rag_engine(db_path):
     print("Setting up RAG engine...")
