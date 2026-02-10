@@ -248,5 +248,125 @@
         "relevance_score": 10,
         "accuracy_score": 10,
         "explanation": "The prediction directly addresses the question and accurately matches the ground truth information, indicating a strong understanding of the relationship between machine learning and artificial intelligence."
+    },
+    {
+        "model": "Llama 3.1 8B (Instant)",
+        "question": "How does machine learning improve over time?",
+        "ground_truth": "Machine learning improves over time as it learns from experience and data, allowing it to make better predictions and decisions.",
+        "prediction": "Machine learning improves over time as a result of experience and data. This is because the algorithms used in machine learning are designed to refine themselves based on the information they receive, allowing them to adapt and become more accurate in their predictions and decision-making processes.",
+        "latency": 17.932950019836426,
+        "relevance_score": 9,
+        "accuracy_score": 8,
+        "explanation": "The prediction is highly relevant to the question as it directly addresses the improvement of machine learning over time. However, it scores 8 out of 10 in terms of accuracy because it uses the phrase 'refine themselves' which is not explicitly mentioned in the ground truth. The ground truth uses the phrase 'make better predictions and decisions' which is a more specific and accurate description of the improvement of machine learning over time."
+    },
+    {
+        "model": "Llama 3.1 8B (Instant)",
+        "question": "What is the role of data in machine learning?",
+        "ground_truth": "Data plays a crucial role in machine learning, as it is used to train and test machine learning models.",
+        "prediction": "Data serves as the foundation for machine learning, enabling computers to learn from it and make predictions or judgments without being explicitly programmed. It is referred to as \"training data\" and consists of a collection of instances, each with one or more inputs and a desired output. This data is used to develop mathematical models that can predict outputs associated with fresh inputs by iteratively optimizing an objective function.",
+        "latency": 17.90019464492798,
+        "relevance_score": 9,
+        "accuracy_score": 8,
+        "explanation": "The prediction is highly relevant to the question, directly addressing the role of data in machine learning. However, it slightly deviates from the ground truth in its explanation, using more technical terms and concepts. The prediction accurately conveys the importance of data in machine learning, but could be more concise and straightforward in its explanation."
+    },
+    {
+        "model": "Llama 3.1 8B (Instant)",
+        "question": "What is the difference between supervised and unsupervised learning?",
+        "ground_truth": "Supervised learning involves training a model on labeled data, while unsupervised learning involves training a model on unlabeled data.",
+        "prediction": "Supervised learning algorithms create a mathematical model of a set of data that includes both the inputs and the outputs that are sought. The information is referred to as training data, and it consists of a collection of training instances. Each training example has one or more inputs and a supervisory signal as the desired output.\n\nOn the other hand, unsupervised learning methods take a collection of data with only inputs and detect structure in it, such as data point grouping or clustering. They learn from unlabeled, unclassified, and uncategorized test data, discovering commonalities in the data and reacting depending on the existence or lack of such commonalities in each new piece of data.",
+        "latency": 18.018694162368774,
+        "relevance_score": 9,
+        "accuracy_score": 8,
+        "explanation": "The prediction directly addresses the question and provides a clear explanation of the difference between supervised and unsupervised learning. However, it could be more concise and directly state the main difference between the two. The accuracy score is 8 because the prediction correctly identifies the characteristics of supervised and unsupervised learning, but it could be more precise in its wording. For example, it states that supervised learning involves 'a set of data that includes both the inputs and the outputs that are sought', which is a bit unclear. Additionally, it uses the term 'supervisory signal' which is not commonly used in the context of machine learning."
+    },
+    {
+        "model": "Llama 3.1 8B (Instant)",
+        "question": "What is the purpose of dimensionality reduction in machine learning?",
+        "ground_truth": "The purpose of dimensionality reduction is to reduce the number of features or variables in a dataset, making it easier to analyze and visualize.",
+        "prediction": "The purpose of dimensionality reduction in machine learning is to lower the number of random variables under consideration by generating a set of primary variables. This technique minimises the size of the feature set, also known as the number of features, while preserving the original variables in the model and not modifying the data.",
+        "latency": 18.729265451431274,
+        "relevance_score": 8,
+        "accuracy_score": 6,
+        "explanation": "The prediction is highly relevant to the question, as it directly addresses the purpose of dimensionality reduction. However, the accuracy score is lower because the prediction does not fully match the ground truth information. The prediction mentions 'generating a set of primary variables' and 'preserving the original variables in the model', which is not mentioned in the ground truth. Additionally, the prediction implies that the original variables are not modified, which is not explicitly stated in the ground truth. Overall, the prediction provides a good understanding of dimensionality reduction, but could be more accurate."
+    },
+    {
+        "model": "Llama 3.1 8B (Instant)",
+        "question": "How does reinforcement learning differ from other types of machine learning?",
+        "ground_truth": "Reinforcement learning differs from other types of machine learning in that it involves an agent learning to take actions in an environment to maximize a reward.",
+        "prediction": "Reinforcement learning differs from other types of machine learning in that it focuses on how software agents should behave in a given environment to maximize some metric of cumulative reward. This approach is distinct from supervised and unsupervised learning, which rely on labeled or unlabeled data, respectively. In contrast, reinforcement learning involves interacting with an environment and learning from the consequences of actions taken, making it a unique and powerful tool for solving complex problems.",
+        "latency": 18.956932067871094,
+        "relevance_score": 9,
+        "accuracy_score": 8,
+        "explanation": "The prediction is highly relevant to the question, as it directly addresses the differences between reinforcement learning and other types of machine learning. However, there is a slight inaccuracy in the explanation, as the prediction mentions 'cumulative reward' whereas the ground truth only mentions 'reward'. Nevertheless, the overall meaning and intent of the prediction align with the ground truth."
+    },
+    {
+        "model": "Llama 3.1 8B (Instant)",
+        "question": "What is the relationship between machine learning and statistics?",
+        "ground_truth": "Machine learning is closely related to statistics, as many machine learning algorithms are based on statistical techniques.",
+        "prediction": "Machine learning benefits from the study of mathematical optimization, which provides tools, theory, and application domains. Additionally, a subset of machine learning is strongly related to computational statistics, which focuses on making predictions using computers.",
+        "latency": 18.142743587493896,
+        "relevance_score": 8,
+        "accuracy_score": 6,
+        "explanation": "The prediction is relevant to the question as it mentions the relationship between machine learning and statistics. However, it does not directly address the question, as it focuses more on the benefits of mathematical optimization and computational statistics. The accuracy score is lower because the prediction does not explicitly state that machine learning algorithms are based on statistical techniques, which is a key point in the ground truth. The prediction does acknowledge the connection to computational statistics, but it could be more explicit in its connection to statistics in general."
+    },
+    {
+        "model": "Llama 3.1 8B (Instant)",
+        "question": "What is the role of machine learning in data mining?",
+        "ground_truth": "Machine learning plays a crucial role in data mining, as it is used to discover patterns and relationships in large datasets.",
+        "prediction": "Machine learning is a subset of data mining that focuses on making predictions using computers. It is a discipline that uses a variety of ways to train computers how to complete tasks for which no entirely suitable solution exists.",
+        "latency": 18.141106843948364,
+        "relevance_score": 8,
+        "accuracy_score": 4,
+        "explanation": "The prediction is partially relevant to the question as it mentions machine learning in the context of data mining. However, it does not directly address the role of machine learning in data mining. The accuracy score is low because the prediction incorrectly states that machine learning is a subset of data mining and does not mention discovering patterns and relationships in large datasets, which is a key aspect of machine learning in data mining."
+    },
+    {
+        "model": "Llama 3.1 8B (Instant)",
+        "question": "How does machine learning improve the accuracy of predictions?",
+        "ground_truth": "Machine learning improves the accuracy of predictions by learning from experience and data, allowing it to make better predictions over time.",
+        "prediction": "Machine learning improves the accuracy of predictions by iteratively optimizing an objective function, which enables the development of a function that can be used to predict the output associated with fresh inputs. This process allows the algorithm to refine its performance over time as it learns from experience and data.",
+        "latency": 19.131788730621338,
+        "relevance_score": 9,
+        "accuracy_score": 8,
+        "explanation": "The prediction is highly relevant to the question as it directly addresses the topic of machine learning improving prediction accuracy. However, it scores 8 out of 10 in terms of accuracy because while it mentions the process of iteratively optimizing an objective function, it doesn't explicitly state that this process allows the algorithm to make better predictions over time, which is a key point in the ground truth. The prediction also uses more technical jargon, which may make it slightly less accessible to non-experts."
+    },
+    {
+        "model": "Llama 3.3 70B (Versatile)",
+        "question": "What is the role of data in machine learning?",
+        "ground_truth": "Data plays a crucial role in machine learning, as it is used to train and test machine learning models.",
+        "prediction": "Data, referred to as \"training data,\" plays a crucial role in machine learning as it enables computers to make predictions or judgments without being explicitly programmed. The computer learns from the data to perform specific tasks, and the quality of the data directly impacts the accuracy of the predictions or judgments made by the machine learning algorithms.",
+        "latency": 1.7328290939331055,
+        "relevance_score": 9,
+        "accuracy_score": 8,
+        "explanation": "The prediction is highly relevant to the question as it directly addresses the role of data in machine learning. However, it could be more accurate as it does not fully capture the nuances of the ground truth. The prediction mentions that data enables computers to make predictions or judgments without being explicitly programmed, which is a key aspect of machine learning. However, it does not explicitly mention that data is used to train and test machine learning models, which is also a crucial point. Overall, the prediction provides a good understanding of the role of data in machine learning, but could be more comprehensive."
+    },
+    {
+        "model": "Llama 3.3 70B (Versatile)",
+        "question": "What is the difference between supervised and unsupervised learning?",
+        "ground_truth": "Supervised learning involves training a model on labeled data, while unsupervised learning involves training a model on unlabeled data.",
+        "prediction": "Supervised learning involves training a model on labeled data, where the correct output is already known, in order to make predictions on new, unseen data. The model learns from the labeled data and makes predictions based on that learning. On the other hand, unsupervised learning involves training a model on unlabeled data, where the model must find patterns or structure in the data on its own, without any prior knowledge of the correct output. Unsupervised learning algorithms discover commonalities in the data and react depending on the existence or lack of such commonalities in each new piece of data, rather than responding to feedback.",
+        "latency": 1.0396106243133545,
+        "relevance_score": 9,
+        "accuracy_score": 8,
+        "explanation": "The prediction is highly relevant to the question, directly addressing the difference between supervised and unsupervised learning. However, there is a slight inaccuracy in the explanation of unsupervised learning, as it implies that the model discovers commonalities and reacts based on their existence or lack thereof, which is not entirely accurate. The ground truth states that unsupervised learning involves finding patterns or structure in the data, which is a more precise description."
+    },
+    {
+        "model": "Llama 3.3 70B (Versatile)",
+        "question": "What is the purpose of dimensionality reduction in machine learning?",
+        "ground_truth": "The purpose of dimensionality reduction is to reduce the number of features or variables in a dataset, making it easier to analyze and visualize.",
+        "prediction": "The purpose of dimensionality reduction in machine learning is to minimize the size of the feature set, also known as the number of features, by generating a set of primary variables. This technique is used to lower the number of random variables under consideration, thereby reducing the complexity of the data while preserving the original variables in the model.",
+        "latency": 0.6802830696105957,
+        "relevance_score": 8,
+        "accuracy_score": 6,
+        "explanation": "The prediction is relevant to the question as it directly addresses the purpose of dimensionality reduction. However, the accuracy score is lower because the prediction does not fully match the ground truth information. The prediction mentions 'generating a set of primary variables' and 'preserving the original variables in the model', which are not mentioned in the ground truth. Additionally, the ground truth is more concise and directly states the purpose of dimensionality reduction, whereas the prediction provides more details that are not entirely accurate."
+    },
+    {
+        "model": "Llama 3.3 70B (Versatile)",
+        "question": "How does reinforcement learning differ from other types of machine learning?",
+        "ground_truth": "Reinforcement learning differs from other types of machine learning in that it involves an agent learning to take actions in an environment to maximize a reward.",
+        "prediction": "Reinforcement learning differs from other types of machine learning in that it focuses on how software agents should behave in a given environment to maximize a cumulative reward. Unlike supervised learning, which involves training on labeled data, and unsupervised learning, which involves discovering structure in unlabeled data, reinforcement learning involves an agent learning through trial and error by interacting with an environment and receiving rewards or penalties for its actions. This type of learning is often represented as a Markov decision process and uses dynamic programming techniques to optimize the agent's behavior.",
+        "latency": 0.8649733066558838,
+        "relevance_score": 9,
+        "accuracy_score": 8,
+        "explanation": "The prediction is highly relevant to the question as it directly addresses the differences between reinforcement learning and other types of machine learning. However, the accuracy score is 8 out of 10 because while the prediction accurately describes the key characteristics of reinforcement learning, it includes some additional information (e.g., Markov decision process and dynamic programming techniques) that is not present in the ground truth. The prediction also uses more formal language, which may not be necessary to answer the question."
     }
 ]
